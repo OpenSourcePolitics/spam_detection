@@ -1,9 +1,24 @@
 PWD=$(shell pwd)
 PORT := 8080
-TAG := spam_detection:latest
+REGION := fr-par
+IMAGE_NAME := spam_detection
+VERSION := latest
+REGISTRY_ENDPOINT := rg.$(REGION).scw.cloud
+REGISTRY_NAMESPACE := osp-internal-tools
+REGISTRY_TAG := $(REGISTRY_ENDPOINT)/$(REGISTRY_NAMESPACE)/$(IMAGE_NAME):$(VERSION)
+
+login:
+	docker login $(REGISTRY_ENDPOINT) -u userdoesnotmatter -p $(TOKEN)
+
+push:
+	docker push $(REGISTRY_TAG)
+
+deploy:
+	@make login
+	@make push
 
 build:
-	docker build -t python-mapping . --compress --tag $(TAG)
+	docker build -t $(IMAGE_NAME) . --compress --tag $(REGISTRY_TAG)
 
 run:
 	docker run -it -e PORT=$(PORT) -p $(PORT):$(PORT) --rm $(TAG)

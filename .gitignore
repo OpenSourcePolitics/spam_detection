@@ -1,0 +1,6 @@
+# Ignored files
+__pycache__/
+*.py[cod]
+.DS_Store
+*.csv
+*.json

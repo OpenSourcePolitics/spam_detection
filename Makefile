@@ -6,6 +6,7 @@ VERSION := latest
 REGISTRY_ENDPOINT := rg.$(REGION).scw.cloud
 REGISTRY_NAMESPACE := osp-internal-tools
 REGISTRY_TAG := $(REGISTRY_ENDPOINT)/$(REGISTRY_NAMESPACE)/$(IMAGE_NAME):$(VERSION)
+AUTH_TOKEN := dummy
 
 login:
 	docker login $(REGISTRY_ENDPOINT) -u userdoesnotmatter -p $(TOKEN)
@@ -21,7 +22,7 @@ build:
 	docker build -t $(IMAGE_NAME) . --compress --tag $(REGISTRY_TAG)
 
 run:
-	docker run -it -e PORT=$(PORT) -p $(PORT):$(PORT) --rm $(TAG)
+	docker run -it -e AUTH_TOKEN=$(AUTH_TOKEN) -e PORT=$(PORT) -p $(PORT):$(PORT) --rm $(REGISTRY_TAG)
 
 start:
 	@make build

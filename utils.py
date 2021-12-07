@@ -14,5 +14,4 @@ def cleaned_df(df):
     return df
 
 def check_for_token(request):
-    print(os.getenv("AUTH_TOKEN"))
     return request.headers.get("AUTH_TOKEN") == os.getenv("AUTH_TOKEN")

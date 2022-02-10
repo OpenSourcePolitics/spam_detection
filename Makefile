@@ -29,4 +29,4 @@ start:
 	@make run
 
 bash:
-	docker run -it --rm $(TAG) /bin/bash
+	docker run -it --rm $(REGISTRY_TAG) /bin/bash

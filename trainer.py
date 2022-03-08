@@ -12,7 +12,7 @@ warnings.filterwarnings('ignore')
 
 #import data
 
-complete_df = pd.read_csv('training/train.csv', low_memory=False)
+complete_df = pd.read_csv('training/train.csv', delimiter=";", low_memory=False)
 
 filtered_df = complete_df[['sign_in_count',
                            'personal_url',
@@ -39,7 +39,7 @@ def train_model():
     # fit model no training data
     model = XGBClassifier()
     model.fit(X_train, y_train)
-    pickle.dump(model, open('new_model.pkl', 'wb'))
+    pickle.dump(model, open('training/new_model.pkl', 'wb'))
 
 if __name__ == '__main__':
     train_model()

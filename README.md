@@ -1,7 +1,7 @@
 
 # spam_detection
 ## Purpose
-The aim of this project is to recognize spam users among decidim.
+The aim of this project is to recognize spam users among Decidim.
 
 ### How does it work:
 A decision tree classifier has been trained to assign a probability to every user of a decidim database.
@@ -23,8 +23,9 @@ To deploy this project run:
   python app.py
 ```
 
-If you would like to retrain the model with your own data run:
-```bash
-  python trainer.py
-``` 
-The newly created .csv doc has to contain a flag column named "is_spam", where 0 = not a spam, and 1 = is spam. 
+## Training
+1. Put a csv inside the data folder with the following columns:
+'sign_in_count', 'personal_url', 'about', 'avatar', 'extended_data', 'followers_count', 'following_count', 'invitations_count', 'failed_attempts', 'admin', 'is_spam'
+You can use `train_example.csv` as example.
+2. `make train`
+3. Move new_model.pkl and replace model.pkl in the main folder.

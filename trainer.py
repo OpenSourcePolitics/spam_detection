@@ -12,7 +12,7 @@ warnings.filterwarnings('ignore')
 
 #import data
 
-complete_df = pd.read_csv('train.csv', low_memory=False)
+complete_df = pd.read_csv('training/train.csv', low_memory=False)
 
 filtered_df = complete_df[['sign_in_count',
                            'personal_url',
@@ -27,7 +27,6 @@ filtered_df = complete_df[['sign_in_count',
                            'is_spam']]
 
 def train_model():
-
     # load data
     df = cleaned_df(filtered_df)
     # split data into X and y

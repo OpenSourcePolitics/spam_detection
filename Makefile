@@ -30,3 +30,6 @@ start:
 
 bash:
 	docker run -it --rm $(REGISTRY_TAG) /bin/bash
+
+train:
+	docker run -it --volume training:/spam_detection/training --rm $(REGISTRY_TAG) python trainer.py

@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import os
 
+
 def cleaned_df(df):
     df['personal_url'] = df['personal_url'].apply(
         lambda x: 0 if pd.isnull(x) else 1)
@@ -12,6 +13,7 @@ def cleaned_df(df):
     df = df.replace(np.nan, 0)
     df = df.apply(pd.to_numeric)  # convert all columns of DataFrame
     return df
+
 
 def check_for_token(request):
     return request.headers.get("AUTH_TOKEN") == os.getenv("AUTH_TOKEN")

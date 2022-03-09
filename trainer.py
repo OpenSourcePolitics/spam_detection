@@ -1,18 +1,17 @@
 from xgboost import XGBClassifier
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
 from utils import cleaned_df
 import pandas as pd
-import numpy as np
 import warnings
-import xgboost as xgb
-import matplotlib.pyplot as plt
 import pickle
 warnings.filterwarnings('ignore')
 
-#import data
 
-complete_df = pd.read_csv('train.csv', low_memory=False)
+complete_df = pd.read_csv(
+    'training/train.csv',
+    delimiter=";",
+    low_memory=False
+)
 
 filtered_df = complete_df[['sign_in_count',
                            'personal_url',
@@ -26,8 +25,8 @@ filtered_df = complete_df[['sign_in_count',
                            'admin',
                            'is_spam']]
 
-def train_model():
 
+def train_model():
     # load data
     df = cleaned_df(filtered_df)
     # split data into X and y
@@ -40,7 +39,8 @@ def train_model():
     # fit model no training data
     model = XGBClassifier()
     model.fit(X_train, y_train)
-    pickle.dump(model, open('new_model.pkl', 'wb'))
+    pickle.dump(model, open('training/new_model.pkl', 'wb'))
+
 
 if __name__ == '__main__':
     train_model()

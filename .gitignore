@@ -5,3 +5,4 @@ __pycache__/
 *.json
 training/*.csv
 training/*.pkl
+.cache_ggshield

@@ -1,4 +1,4 @@
-xgboost~=1.5.2
+xgboost~=1.1.1
 scikit-learn~=1.0.2
 pandas~=1.4.1
 gunicorn==20.1.0
